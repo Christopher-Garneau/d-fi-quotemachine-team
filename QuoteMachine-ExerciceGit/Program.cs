@@ -32,12 +32,11 @@ static void SaveQuotesToFile(QuoteManager manager)
 {
     try
     {
-        Console.WriteLine("[Simulation] On sauvegarderait les citations ici.");
-        // Exemple futur :
-        // manager.SaveToFile("citations.txt");
-        //Console.WriteLine("Citations sauvegardées !");
+        string path = "citations.csv";
+        manager.SaveToCSVFile(path);
+        Console.WriteLine("Citations sauvegardées dans le fichier : " + path);
     }
-    catch (Exception ex)
+    catch (QuoteFileException ex)
     {
         Console.WriteLine($"Erreur : {ex.Message}");
     }
