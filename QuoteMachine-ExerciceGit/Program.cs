@@ -49,8 +49,8 @@ static void LoadQuotesFromFile(QuoteManager manager)
     {
         Console.WriteLine("[Simulation] On chargerait les citations ici.");
         // Exemple futur :
-        // manager.LoadFromFile("citations.txt");
-        //Console.WriteLine("Citations chargées !");
+        manager.LoadFromCSVFile("citations.csv");
+        Console.WriteLine("Citations chargées !");
     }
     catch (Exception ex)
     {

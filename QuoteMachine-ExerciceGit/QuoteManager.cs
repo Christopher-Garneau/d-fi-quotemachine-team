@@ -1,8 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Diagnostics;
 
 namespace QuoteMachine_ExerciceGit
 {
@@ -54,11 +57,42 @@ namespace QuoteMachine_ExerciceGit
             //LoadFromFile_ShouldAppendQuotesToList
             //LoadFromFile_ShouldThrowIfFileMissing
             //LoadFromFile_ShouldThrowIfNotInCSVExtension
+            if (IsCSVFile(path))
+            {
+                string CheminBase = "C:\\data-420-04A-FX\\Conception";
+                string CheminFinal = CheminBase + "\\" + path;
+                StreamReader fichier = new StreamReader(CheminBase);
+                string contenuFichier = fichier.ReadToEnd();
+                fichier.Close();
 
-            //Avant de créer votre PR, faites un git rebase sur main pour vous assurer que vous avez la dernière version du code.
+                contenuFichier = contenuFichier.Replace("\r", "");
+                string[] vectLignes = contenuFichier.Split("\n");
 
-            throw new NotImplementedException("À implémenter dans feature/load-from-file");
+                int nbQuotes;
+
+                if (vectLignes[vectLignes.Length - 1] != "")
+                    // Il y a des données sur la dernière ligne.
+                    nbQuotes = vectLignes.Length - 1;
+                else
+                    // La dernière ligne est vide.
+                    nbQuotes = vectLignes.Length - 2;
+
+                List<Quote> LesQuotes = new List<Quote>();
+
+                for (int i = 0; i < nbQuotes; i++)
+                {
+                    string[] vectChamps = vectLignes[i + 1].Split(";");
+                    LesQuotes.Add(new Quote(vectChamps[1].Trim(), vectChamps[2].Trim()));
+                }
+
+
+                //Avant de créer votre PR, faites un git rebase sur main pour vous assurer que vous avez la dernière version du code.
+
+                //throw new NotImplementedException("À implémenter dans feature/load-from-file");
+            }
+
         }
+            
 
         public List<Quote> GetAllQuotes()
         {
