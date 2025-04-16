@@ -28,7 +28,7 @@ namespace QuoteMachine_ExerciceGit
 
             int randomIndex = _random.Next(0, _quotes.Count);
             return _quotes[randomIndex];
-            
+
         }
 
         public void AddQuote(string text, string author)
