@@ -20,14 +20,14 @@ namespace QuoteMachineTests
             Assert.IsType<Quote>(quote);
         }
 
-        //[Fact]
-        //public void AddQuote_ShouldIncreaseQuoteCount()
-        //{
-        //    int countBefore = _manager.GetAllQuotes().Count;
-        //    _manager.AddQuote("Test", "Moi");
-        //    int countAfter = _manager.GetAllQuotes().Count;
-        //    Assert.Equal(++countBefore, countAfter);
-        //}
+        [Fact]
+        public void AddQuote_ShouldIncreaseQuoteCount()
+        {
+            int countBefore = _manager.GetAllQuotes().Count;
+            _manager.AddQuote("Test", "Moi");
+            int countAfter = _manager.GetAllQuotes().Count;
+            Assert.Equal(++countBefore, countAfter);
+        }
 
         //[Fact]
         //public void SaveToFile_ShouldCreateFile()
@@ -54,7 +54,7 @@ namespace QuoteMachineTests
         //    File.WriteAllLines(path, new[]
         //    {
         //    "Le test est la preuve,Professeur X",
-        //    "Programmer, c’est penser deux fois,Alan Kay"
+        //    "Programmer, cï¿½est penser deux fois,Alan Kay"
         //    });
 
         //    _manager.LoadFromCSVFile(path);
