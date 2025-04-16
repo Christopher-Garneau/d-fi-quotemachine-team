@@ -11,12 +11,14 @@ var manager = new QuoteManager();
 string path = "citations.csv";
 char choixMenu;
 
+
 // Affichage de menu
 Console.WriteLine("Menu principale");
 Console.WriteLine("1) Générer une citation");
 Console.WriteLine("2) Ajouter une citation");
 Console.WriteLine("3) Charger les citation");
 Console.WriteLine("4) Sortir");
+
 
 // Saisie du choix de l'utilisateur
 Console.Write("Votre choix ? ");
