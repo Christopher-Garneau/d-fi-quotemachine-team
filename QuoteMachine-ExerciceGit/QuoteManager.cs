@@ -36,7 +36,7 @@ namespace QuoteMachine_ExerciceGit
 
             //Avant de créer votre PR, faites un git rebase sur main pour vous assurer que vous avez la dernière version du code.
             Quote quote = new (text,author);
-            _quotes.add(quote);
+            _quotes.AddNewQuote(quote);
 
 
            // throw new NotImplementedException("À implémenter dans feature/add-quote");
