@@ -64,19 +64,36 @@ namespace QuoteMachine_ExerciceGit
             throw new NotImplementedException("À implémenter dans feature/save-to-file");
         }
 
-        public void LoadFromCSVFile(string path)
-        {
-            //Avant de commencer, décommenter les tests suivants:
-            //LoadFromFile_ShouldAppendQuotesToList
-            //LoadFromFile_ShouldThrowIfFileMissing
-            //LoadFromFile_ShouldThrowIfNotInCSVExtension
+		public void LoadFromCSVFile(string path)
+		{
+			//Avant de commencer, décommenter les tests suivants:
+			//LoadFromFile_ShouldAppendQuotesToList
+			//LoadFromFile_ShouldThrowIfFileMissing
+			//LoadFromFile_ShouldThrowIfNotInCSVExtension
 
-            //Avant de créer votre PR, faites un git rebase sur main pour vous assurer que vous avez la dernière version du code.
+			//Avant de créer votre PR, faites un git rebase sur main pour vous assurer que vous avez la dernière version du code.
+			if (!IsCSVFile(path))
+			{
+				throw new QuoteFileException("Erreur lors de la sauvegarde : le fichier doit avoir l'extension .csv");
+			}
 
-            throw new NotImplementedException("À implémenter dans feature/load-from-file");
-        }
+			if (!File.Exists(path))
+			{
+				throw new QuoteFileException("Erreur lors du chargement : le fichier n'existe pas");
+			}
 
-        public List<Quote> GetAllQuotes()
+			var lines = File.ReadAllLines(path);
+			foreach (var line in lines)
+			{
+				var parts = line.Split(',');
+				if (parts.Length == 2)
+				{
+					AddQuote(parts[0], parts[1]);
+				}
+			}
+		}
+
+		public List<Quote> GetAllQuotes()
         {
             return _quotes; // Pas besoin d'ajouter de test pour cette méthode
         }
