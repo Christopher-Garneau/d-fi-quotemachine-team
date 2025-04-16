@@ -59,9 +59,7 @@ namespace QuoteMachine_ExerciceGit
             //LoadFromFile_ShouldThrowIfNotInCSVExtension
             if (IsCSVFile(path))
             {
-                string CheminBase = "C:\\data-420-04A-FX\\Conception";
-                string CheminFinal = CheminBase + "\\" + path;
-                StreamReader fichier = new StreamReader(CheminBase);
+                StreamReader fichier = new StreamReader(path);
                 string contenuFichier = fichier.ReadToEnd();
                 fichier.Close();
 
@@ -70,19 +68,34 @@ namespace QuoteMachine_ExerciceGit
 
                 int nbQuotes;
 
-                if (vectLignes[vectLignes.Length - 1] != "")
+                if (vectLignes[vectLignes.Length] != "")
                     // Il y a des données sur la dernière ligne.
-                    nbQuotes = vectLignes.Length - 1;
+                    nbQuotes = vectLignes.Length;
                 else
                     // La dernière ligne est vide.
-                    nbQuotes = vectLignes.Length - 2;
-
-                List<Quote> LesQuotes = new List<Quote>();
+                    nbQuotes = vectLignes.Length - 1;
 
                 for (int i = 0; i < nbQuotes; i++)
                 {
-                    string[] vectChamps = vectLignes[i + 1].Split(";");
-                    LesQuotes.Add(new Quote(vectChamps[1].Trim(), vectChamps[2].Trim()));
+                    string[] vectChamps = vectLignes[i].Split(",");
+                    if (vectChamps.Length > 2)
+                    {
+                        string textFusion = "";
+                        int j;
+                        for (j = 0; j < vectChamps.Length - 2; j++)
+                        {
+                            textFusion += vectChamps[j] + ", ";
+                        }
+                        textFusion += vectChamps[j - 1];
+
+                        _quotes.Add(
+                            new Quote { Text = textFusion, Author = vectChamps[1].Trim() }
+                        );
+
+                    }
+                    _quotes.Add(
+                        new Quote { Text = vectChamps[0].Trim(), Author = vectChamps[1].Trim() }
+                    );
                 }
 
 
@@ -92,7 +105,7 @@ namespace QuoteMachine_ExerciceGit
             }
 
         }
-            
+
 
         public List<Quote> GetAllQuotes()
         {
