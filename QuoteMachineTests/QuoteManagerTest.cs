@@ -1,4 +1,5 @@
 using QuoteMachine_ExerciceGit;
+using Xunit;
 
 namespace QuoteMachineTests
 {
@@ -11,13 +12,13 @@ namespace QuoteMachineTests
             _manager = new QuoteManager();
         }
 
-        //[Fact]
-        //public void GetRandomQuote_ShouldReturnNonNullQuote()
-        //{
-        //    var quote = _manager.GetRandomQuote();
-        //    Assert.NotNull(quote);
-        //    Assert.IsType<Quote>(quote);
-        //}
+        [Fact]
+        public void getrandomquote_shouldreturnnonnullquote()
+        {
+            var quote = _manager.GetRandomQuote();
+            Assert.NotNull(quote);
+            Assert.IsType<Quote>(quote);
+        }
 
         //[Fact]
         //public void AddQuote_ShouldIncreaseQuoteCount()
