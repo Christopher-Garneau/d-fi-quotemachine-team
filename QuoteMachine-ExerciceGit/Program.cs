@@ -26,6 +26,8 @@ static void AddNewQuote(QuoteManager manager)
      var auteur = Console.ReadLine();
      manager.AddQuote(texte, auteur);
      Console.WriteLine("Citation ajoutée !");
+
+     manager.AddQuote(text, auteur);
 }
 
 static void SaveQuotesToFile(QuoteManager manager)
