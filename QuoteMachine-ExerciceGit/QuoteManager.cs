@@ -57,22 +57,22 @@ namespace QuoteMachine_ExerciceGit
         public void SaveToCSVFile(string path)
         {
             if (!IsCSVFile(path))
-        throw new QuoteFileException("Erreur lors de la sauvegarde : le fichier doit avoir l'extension .csv");
+                throw new QuoteFileException("Erreur lors de la sauvegarde : le fichier doit avoir l'extension .csv");
 
-    try
-    {
-        using (StreamWriter writer = new StreamWriter(path, false, Encoding.UTF8))
-        {
-            foreach (var quote in _quotes)
+            try
             {
-                writer.WriteLine($"\"{quote.Text.Replace("\"", "\"\"")}\",\"{quote.Author.Replace("\"", "\"\"")}\"");
+                using (StreamWriter writer = new StreamWriter(path, false, Encoding.UTF8))
+                {
+                    foreach (var quote in _quotes)
+                    {
+                        writer.WriteLine($"\"{quote.Text.Replace("\"", "\"\"")}\",\"{quote.Author.Replace("\"", "\"\"")}\"");
+                    }
+                }
             }
-        }
-    }
-    catch (Exception ex)
-    {
-        throw new QuoteFileException("Erreur lors de la sauvegarde des citations.", ex);
-    }
+            catch (Exception ex)
+            {
+                throw new QuoteFileException("Erreur lors de la sauvegarde des citations.", ex);
+            }
         }
 
         public void LoadFromCSVFile(string path)
